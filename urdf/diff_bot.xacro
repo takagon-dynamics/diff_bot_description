@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="diff_bot"
+              params="base_footprint
+                      base_link
+                      left_wheel_link
+                      right_wheel_link
+                      lidar_link
+                      base_joint
+                      left_wheel_joint
+                      right_wheel_joint
+                      lidar_joint
+                      ">
+
+    <link name="${base_footprint}"/>
+
+    <joint name="${base_joint}" type="fixed">
+      <origin xyz="0 0 0.02"/>
+      <parent link="${base_footprint}"/>
+      <child link="${base_link}"/>
+    </joint>
+
+    <link name="${base_link}"/>
+
+    <joint name="${left_wheel_joint}" type="continuous">
+      <axis xyz="0 0 1.0"/>
+      <parent link="${base_link}"/>
+      <child link="${left_wheel_link}"/>
+      <origin rpy="-1.57 0 0" xyz="0 0.11 0"/>
+    </joint>
+    
+    <link name="${left_wheel_link}"/>
+
+    <joint name="${right_wheel_joint}" type="continuous">
+      <axis xyz="0.0 0.0 1"/>
+      <parent link="${base_link}"/>
+      <child link="${right_wheel_link}"/>
+      <origin rpy="-1.57 0 0" xyz="0 -0.11 0"/>
+    </joint>
+    
+    <link name="${right_wheel_link}"/>
+
+    <joint name="${lidar_joint}" type="fixed">
+      <origin xyz="0 0 0.17"/>
+      <parent link="${base_link}"/>
+      <child link="${lidar_link}"/>
+    </joint>
+
+    <link name="${lidar_link}"/>
+  </xacro:macro>
+
+</robot>
