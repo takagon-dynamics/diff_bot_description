@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<robot name="diff_bot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find diff_bot_description)/urdf/diff_bot.xacro"/>
+  <xacro:include filename="$(find diff_bot_description)/urdf/diff_bot.ros2_control.xacro"/>
+
+  <xacro:property name="ROBOT_NAME"         value="diff_bot"/>
+
+  <xacro:property name="BASE_FOOTPRINT"     value="base_footprint"/>
+  <xacro:property name="BASE_LINK"          value="base_link"/>
+  <xacro:property name="LEFT_WHEEL_LINK"    value="left_wheel_link"/>
+  <xacro:property name="RIGHT_WHEEL_LINK"   value="right_wheel_link"/>
+  <xacro:property name="LIDAR_LINK"         value="lidar_link"/>
+
+  <xacro:property name="BASE_LINK_JOINT"    value="base_joint"/>
+  <xacro:property name="LEFT_WHEEL_JOINT"   value="left_wheel_joint"/>
+  <xacro:property name="RIGHT_WHEEL_JOINT"  value="right_wheel_joint"/>
+  <xacro:property name="LIDAR_JOINT"        value="lidar_joint"/>
+
+  <xacro:property name="ROS2_CONTROL_HARDWARE_PLUGIN"        
+                                            value="diff_bot_control/DiffBotHardware"/>
+
+  <xacro:diff_bot
+    base_footprint="${BASE_FOOTPRINT}"
+    base_link="${BASE_LINK}"
+    left_wheel_link="${LEFT_WHEEL_LINK}"
+    right_wheel_link="${RIGHT_WHEEL_LINK}"
+    lidar_link="${LIDAR_LINK}"
+
+    base_joint="${BASE_LINK_JOINT}"
+    left_wheel_joint="${LEFT_WHEEL_JOINT}"
+    right_wheel_joint="${RIGHT_WHEEL_JOINT}"
+    lidar_joint="${LIDAR_JOINT}"
+  />
+
+  <xacro:diff_bot_ros2_control
+    name="${ROBOT_NAME}"
+    left_wheel_joint="${LEFT_WHEEL_JOINT}"
+    right_wheel_joint="${RIGHT_WHEEL_JOINT}"
+    ros2_control_hardware_plugin="${ROS2_CONTROL_HARDWARE_PLUGIN}"
+  />
+
+</robot>
